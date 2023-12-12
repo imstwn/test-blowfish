@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'success' %}success{% endif %}  alert-dismissible" role="alert" >
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+
+{% if file is none %}
+<form method ='post' enctype ="multipart/form-data">
+  {% csrf_token %}
+  <div class="input-group mb-3">
+    {{form.file}}
+  </div>
+  <div class="form-floating mb-3">
+    {{form.key}}
+    {{form.key.label_tag}}
+  </div>
+
+  <input type="submit" class="btn btn-primary m-1" value="Decrypt">
+</form>
+{% elif file is not none %}
+<a href="{% url 'download-file' file.slug %}">{{ file.filename }}</a>
+{% endif %}
+{% endblock content %}

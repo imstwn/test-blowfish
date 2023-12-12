@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{title}} - Blowfish Cryptography</title>
+	{% include 'snippets/styles.html' %}
+</head>
+<body>
+	<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    {% include 'snippets/sidebar.html' %}
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      {% include 'snippets/header.html' %}
+      <!--  Header End -->
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">{{title}}</h5>
+            {% block content %}{% endblock content %}
+          </div>
+        </div>
+        <!--  Row 1 -->
+        
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

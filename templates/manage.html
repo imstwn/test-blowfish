@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="table-responsive">
+  <table class="table text-nowrap mb-0 align-middle">
+    <thead class="text-dark fs-4 text-center">
+      <tr>
+        <th class="border-bottom-0" width="30%">
+          <h6 class="fw-semibold mb-0">Name</h6>
+        </th>
+        <th class="border-bottom-0">
+          <h6 class="fw-semibold mb-0">Category</h6>
+        </th>
+        <th class="border-bottom-0">
+          <h6 class="fw-semibold mb-0">Time</h6>
+        </th>
+        <th class="border-bottom-0">
+          <h6 class="fw-semibold mb-0">Manage</h6>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if crypt %}
+        {% for c in crypt %}
+        <tr>
+          <td class="border-bottom-0">
+            <h6 class="fw-semibold mb-1">{{c.slug}}</h6>
+            <span class="fw-normal">
+              {% if c.filename|length > 45 %}
+              {{ c.filename|slice:":45" }}...{{ c.filename|slice:"-4:" }}
+              {% else %}
+              {{c.filename}}
+              {% endif %}
+            </span>
+          </td>
+          <td class="border-bottom-0">
+            <div class="d-flex align-items-center">
+              <span class="badge bg-{% if c.category == 'encrypt' %}success{% else %}warning{% endif %} rounded-2">{{c.category|capfirst}}</span>
+            </div>
+          </td>
+          <td class="border-bottom-0 text-center">
+            <span class="fw-normal">{{c.created}}</span>
+          </td>
+          <td class="border-bottom-0 text-center">
+            <h6 class="fw-semibold mb-0 fs-4">
+              <a href="{% url 'manage-file' c.slug %}" class="btn btn-sm btn-info m-1">Detail</a>
+              <a href="{% url 'delete-file' c.slug %}" class="btn btn-sm btn-danger m-1">Delete</a>
+            </h6>
+          </td>
+        </tr> 
+        {% endfor %}
+      {% else %}
+      <tr>
+        <td class="text-center" colspan="4">No Data Available</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

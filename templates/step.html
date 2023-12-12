@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="table-responsive">
+	<table class="table text-nowrap mb-0 align-middle">
+		<tr>
+			<td>File</td>
+			<td>'D'</td>
+		</tr>
+		<tr>
+			<td>Kunci</td>
+			<td>
+				<p style="width: 135px;">original: <span>{{keys}}</span></p> 
+				<p style="width: 135px;">adjusted: <span>{{keygen}}</span></p> 
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="table-responsive">
+	<table class="table text-nowrap mb-0 align-middle">
+		<tr>
+			<td>
+				<h6 class="fw-semibold">Langkah 1: Pembuatan Sub-Key</h6>
+				<div>P Keys:<br>
+					{{resultkey}}
+				</div>
+				<div>P Sub-Keys:<br>
+					{{resultsub}}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h6 class="fw-semibold">Langkah 2: Inisialisasi S-Box</h6>
+				<div>S-Box:<br>
+					1: {{resultsbx1}}<br>
+					2: {{resultsbx2}}<br>
+					3: {{resultsbx3}}<br>
+					4: {{resultsbx4}}<br>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h6 class="fw-semibold">Langkah 3: Proses Enkripsi</h6>
+				<h6>- Putaran</h6>
+				{% for i in round %}
+				<div class="mx-3">
+					Putaran ke-{{ forloop.counter }}: {{i}}<br>
+				</div>
+				{% endfor %}
+				<h6 class="mt-2">- Hasil Enkripsi</h6>
+				<div class="mx-3">
+					{{postprocess}}
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+
+{% endblock content %}

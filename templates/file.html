@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if file %}
+<div class="row">
+	<div class="col-sm-3 text-center">
+		<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-analytics" width="150" height="150" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+			<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+			<path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+			<path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+			<path d="M9 17l0 -5"></path>
+			<path d="M12 17l0 -1"></path>
+			<path d="M15 17l0 -3"></path>
+		</svg>
+		<a href="{% url 'download-file' file.slug %}" class="btn btn-primary text-white mt-3">Download Here</a>
+	</div>
+	<div class="col-sm-9">
+		
+		<div class="table-responsive">
+			<table class="table text-nowrap mb-0 align-middle">
+				<tr>
+					<td>Id</td>
+					<td>{{file.slug}}</td>
+				</tr>
+				<tr>
+					<td>Filename</td>
+					<td>{{file.filename}}</td>
+				</tr>
+				<tr>
+					<td>File Size</td>
+					<td>{{file.size}} bytes</td>
+				</tr>
+				<tr>
+					<td>Time Processed</td>
+					<td>{{file.time}} ms</td>
+				</tr>
+				<tr>
+					<td>Created</td>
+					<td>{{file.created}}</td>
+				</tr>
+				<tr>
+					<td>Category</td>
+					<td>{{file.category|capfirst}}</td>
+				</tr>
+			</table>
+		</div>
+		
+	</div>
+</div>
+{% endif %}
+{% endblock content %}
